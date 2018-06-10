@@ -1,23 +1,17 @@
 {
-  "name": "learnjs",
+  "name": "home-work-3-yakusik-maksim",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Third home work for course FD2 JavaScript by Intexsoft",
   "scripts": {
     "start": "browser-sync start -s -w"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DzmitryGrom/learnJs.git"
-  },
-  "author": "",
+  "author": "Maksim Yakusik",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DzmitryGrom/learnJs/issues"
-  },
-  "homepage": "https://github.com/DzmitryGrom/learnJs#readme",
-  "devDependencies": {
-    "browser-sync": "^2.24.4",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
     "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.4"
   }
 }
