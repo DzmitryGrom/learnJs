@@ -26,14 +26,13 @@ function onHashChange() {
 function getTemplateId(path, route) {
     var id,
         current = path[0];
-
-    if(path.length > 1) {
+    if(path.length > 1 &&  route[current]) {
       path.shift();
         id = getTemplateId(path, route[current]);        
     } else {
       id = route[path[0]];
     }
-    return id || 0;
+    return id || undefined;
 }
 
 function getHashPath() {
