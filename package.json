@@ -1,17 +1,15 @@
 {
-  "name": "home-work-3-yakusik-maksim",
+  "name": "home-work-4-yakusik-maksim",
   "version": "1.0.0",
-  "description": "Third home work for course FD2 JavaScript by Intexsoft",
+  "description": "Fourth home work for course FD2 JavaScript by Intexsoft",
   "scripts": {
     "start": "browser-sync start -s -w"
   },
   "author": "Maksim Yakusik",
   "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^4.1.1",
-    "jquery": "^3.3.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "browser-sync": "^2.24.4"
+    "browser-sync": "^2.24.4",
+    "jasmine": "^3.1.0"
   }
 }
