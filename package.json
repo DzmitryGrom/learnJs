@@ -1,13 +1,10 @@
 {
-  "name": "home-work-4-yakusik-maksim",
+  "name": "group_work_5__data_structure_part_1",
   "version": "1.0.0",
-  "description": "Fourth home work for course FD2 JavaScript by Intexsoft",
   "scripts": {
     "start": "browser-sync start -s -w"
   },
   "author": "Maksim Yakusik",
-  "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.24.4",
     "jasmine": "^3.1.0"
