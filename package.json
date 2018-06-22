@@ -1,10 +1,10 @@
 {
-  "name": "group_work_5__data_structure_part_1",
+  "name": "group_work_6__data_structure_part_2",
   "version": "1.0.0",
   "scripts": {
     "start": "browser-sync start -s -w"
   },
-  "author": "Maksim Yakusik",
+  "author": "Shaliaheika Dzmitry",
   "devDependencies": {
     "browser-sync": "^2.24.4",
     "jasmine": "^3.1.0"
