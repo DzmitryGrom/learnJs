@@ -1,47 +1,64 @@
-(function (global) {
-  'use strict';
+(function (AppUtil) {
 
-  var MatrixUtil = {};
+    var debounceBlockElements = getBlockElemets('blockWithDebounce'),
+        setValueInDebounceSpan = AppUtil.debounce(getFormatedName, 500, function (value) {
+            debounceBlockElements.span.text(value || '-');
+        }),
+        throttleBlockElements = getBlockElemets('blockWithThrottle'),
+        setValueInThrottleSpan = AppUtil.throttle(getFormatedName, 1000, function (value) {
+            throttleBlockElements.span.text(value || '-');
+        });
 
-  global.MatrixUtil = MatrixUtil;
+    setInputListener(debounceBlockElements.input, setValueInDebounceSpan);
+    setInputListener(throttleBlockElements.input, setValueInThrottleSpan);
 
-  MatrixUtil.create = function (height, width, value) {
-    var result = new Array(height),
-      line;
+    function setInputListener(element, callback) {
+        element.on('input', function (event) {
+            var input = element.val();
 
-    width = width || height;
-
-    for (var index = 0; height > index; index++) {
-      line = new Array(width);
-      line.fill(value);
-
-      result[index] = line;
+            callback(input);
+        });
     }
 
-    return result;
-  };
+    function getBlockElemets(blockId) {
+        var blockElement = $('#' + blockId);
 
-  MatrixUtil.toString = function (valueConverter) {
-    return function (matrix) {
-      return matrix.map(function (line) {
-        return line.map(function (item) {
-          return valueConverter(item);
-        }).join('');
-      }).join('\n');
-    };
-  }
-
-  MatrixUtil.setValueForSector = function (matrix) {
-    return function (aY, aX, bY, bX) {
-      return function (value) {
-        for (var x = aY; x <= bY; x++) {
-          for (var r = aX; r <= bX; r++) {
-            matrix[x][r] = value;
-          }
+        return {
+            input: blockElement.find('input'),
+            span: blockElement.find('span')
         }
-      };
-    };
-  };
+    }
 
+    function getFormatedName(input) {
+        return getSeparateWords(input)
+            .map(toUpperFirstLetter)
+            .join(' ');
+    }
 
-})(typeof module !== 'undefined' ? module.exports : window);
+    function getSeparateWords(string) {
+        var result;
+
+        if (string) {
+            result = string.split(' ').filter(function (word) {
+                return !!word;
+            });
+        } else {
+            result = [];
+        }
+
+        return result;
+    }
+
+    function toUpperFirstLetter(string) {
+        var result;
+
+        if (string) {
+            result = string.charAt(0).toUpperCase() +
+                string.slice(1).toLowerCase();
+        } else {
+            result = '';
+        }
+
+        return result;
+    }
+})(AppUtil);
