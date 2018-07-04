@@ -39,7 +39,7 @@ describe('Test AppUtil', function () {
 
       jasmine.clock().tick(2000);
 
-      expect(count).toBe(4);
+      expect(count).toBe(1);
 
       jasmine.clock().uninstall();
 
