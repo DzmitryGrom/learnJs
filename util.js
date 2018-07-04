@@ -16,13 +16,13 @@
       lastParamsApplied = false;
 
       // TODO need improve code here
-
       timerId = setTimeout(function () {
-        if (!lastParamsApplied) {
+        if (timerId !== undefined) {
+          clearTimeout(timerId);
           applyPayloadFunction();
         } else {
-          clearTimeout(timerId);
           timerId = undefined;
+          clearTimeout(timerId);
         }
 
       }, delayMs);

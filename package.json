@@ -2,8 +2,7 @@
   "name": "home-work-Dzmitry",
   "version": "1.0.0",
   "scripts": {
-    "start": "browser-sync start -s -w",
-    "nodeJsSample": "node ./nodeJsSample.js"
+    "start": "browser-sync start -s -w"
   },
   "author": "Dzmitry Shaliaheika",
   "license": "ISC",
