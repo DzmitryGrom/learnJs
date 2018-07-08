@@ -8,7 +8,6 @@
   AppUtil.isValidEmail = function (value) {
 
     // TODO need improve code here
-    //return /^\w\.\w$/g.test(value);
     return /^[.a-z]+@[a-z]+\./.test(value);
   }
 
