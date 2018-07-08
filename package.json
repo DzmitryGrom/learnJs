@@ -1,14 +1,11 @@
 {
-  "name": "home-work-Dzmitry",
+  "name": "home-work-10-yakusik-maksim",
   "version": "1.0.0",
   "scripts": {
     "start": "browser-sync start -s -w"
   },
-  "author": "Dzmitry Shaliaheika",
+  "author": "Maksim Yakusik",
   "license": "ISC",
-  "dependencies": {
-    "jquery": "^3.3.1"
-  },
   "devDependencies": {
     "browser-sync": "^2.24.4",
     "jasmine": "^3.1.0"

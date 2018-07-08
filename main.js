@@ -1,64 +1,33 @@
-(function (AppUtil) {
+(function (global) {
+  'use strict';
 
-    var debounceBlockElements = getBlockElemets('blockWithDebounce'),
-        setValueInDebounceSpan = AppUtil.debounce(getFormatedName, 500, function (value) {
-            debounceBlockElements.span.text(value || '-');
-        }),
-        throttleBlockElements = getBlockElemets('blockWithThrottle'),
-        setValueInThrottleSpan = AppUtil.throttle(getFormatedName, 1000, function (value) {
-            throttleBlockElements.span.text(value || '-');
-        });
+  var AppUtil = {};
 
-    setInputListener(debounceBlockElements.input, setValueInDebounceSpan);
-    setInputListener(throttleBlockElements.input, setValueInThrottleSpan);
+  global.AppUtil = AppUtil;
 
-    function setInputListener(element, callback) {
-        element.on('input', function (event) {
-            var input = element.val();
+  AppUtil.isValidEmail = function (value) {
 
-            callback(input);
-        });
-    }
+    // TODO need improve code here
+    //return /^\w\.\w$/g.test(value);
+    return /^[.a-z]+@[a-z]+\./.test(value);
+  }
 
-    function getBlockElemets(blockId) {
-        var blockElement = $('#' + blockId);
+  AppUtil.isTime = function (value) {
+    // TODO need improve code here
+    return /^[0-2][0-5]:[0-5][0-9]$/.test(value);
+  };
 
-        return {
-            input: blockElement.find('input'),
-            span: blockElement.find('span')
-        }
-    }
+  AppUtil.isTimeIn12HourClock = function (value) {
+    // TODO need improve code here
+    return /^[0-2][0-2]:[0-5][0-9]+\s\w*$/.test(value);
+  };
 
-    function getFormatedName(input) {
-        return getSeparateWords(input)
-            .map(toUpperFirstLetter)
-            .join(' ');
-    }
+  AppUtil.isValidNumber = function (value) {
+    return /^\d*[,.]?\d*([eE][-+]\d+)?$/.test(value);
+  };
 
-    function getSeparateWords(string) {
-        var result;
+  AppUtil.isValidJsFileName = function (value) {
+    return /^[\w.-]+\.js$/.test(value);
+  };
 
-        if (string) {
-            result = string.split(' ').filter(function (word) {
-                return !!word;
-            });
-        } else {
-            result = [];
-        }
-
-        return result;
-    }
-
-    function toUpperFirstLetter(string) {
-        var result;
-
-        if (string) {
-            result = string.charAt(0).toUpperCase() +
-                string.slice(1).toLowerCase();
-        } else {
-            result = '';
-        }
-
-        return result;
-    }
-})(AppUtil);
+})(typeof module !== 'undefined' ? module.exports : window);
