@@ -1,32 +1,64 @@
-(function (global) {
-  'use strict';
+(function (AppUtil) {
 
-  var AppUtil = {};
+  var debounceBlockElements = getBlockElemets('blockWithDebounce'),
+    setValueInDebounceSpan = AppUtil.debounce(getFormatedName, 500, function (value) {
+      debounceBlockElements.span.text(value || '-');
+    }),
+    throttleBlockElements = getBlockElemets('blockWithThrottle'),
+    setValueInThrottleSpan = AppUtil.throttle(getFormatedName, 1000, function (value) {
+      throttleBlockElements.span.text(value || '-');
+    });
 
-  global.AppUtil = AppUtil;
+  setInputListener(debounceBlockElements.input, setValueInDebounceSpan);
+  setInputListener(throttleBlockElements.input, setValueInThrottleSpan);
 
-  AppUtil.isValidEmail = function (value) {
+  function setInputListener(element, callback) {
+    element.on('input', function (event) {
+      var input = element.val();
 
-    // TODO need improve code here
-    return /^[.a-z]+@[a-z]+\./.test(value);
+      callback(input);
+    });
   }
 
-  AppUtil.isTime = function (value) {
-    // TODO need improve code here
-    return /^[0-2][0-5]:[0-5][0-9]$/.test(value);
-  };
+  function getBlockElemets(blockId) {
+    var blockElement = $('#' + blockId);
 
-  AppUtil.isTimeIn12HourClock = function (value) {
-    // TODO need improve code here
-    return /^[0-2][0-2]:[0-5][0-9]+\s\w*$/.test(value);
-  };
+    return {
+      input: blockElement.find('input'),
+      span: blockElement.find('span')
+    }
+  }
 
-  AppUtil.isValidNumber = function (value) {
-    return /^\d*[,.]?\d*([eE][-+]\d+)?$/.test(value);
-  };
+  function getFormatedName(input) {
+    return getSeparateWords(input)
+      .map(toUpperFirstLetter)
+      .join(' ');
+  }
 
-  AppUtil.isValidJsFileName = function (value) {
-    return /^[\w.-]+\.js$/.test(value);
-  };
+  function getSeparateWords(string) {
+    var result;
 
-})(typeof module !== 'undefined' ? module.exports : window);
+    if (string) {
+      result = string.split(' ').filter(function (word) {
+        return !!word;
+      });
+    } else {
+      result = [];
+    }
+
+    return result;
+  }
+
+  function toUpperFirstLetter(string) {
+    var result;
+
+    if (string) {
+      result = string.charAt(0).toUpperCase() +
+        string.slice(1).toLowerCase();
+    } else {
+      result = '';
+    }
+
+    return result;
+  }
+})(AppUtil);
